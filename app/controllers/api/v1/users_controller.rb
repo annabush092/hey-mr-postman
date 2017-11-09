@@ -11,12 +11,18 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(name: params[:name], email: params[:email])
+    @user = User.new(name: params[:name], email_address: params[:email_address])
     if @user.save
       render json: @user
     else
       render json: {errors: @user.errors.full_messages}, status: 422
     end
+  end
+
+  def login
+    inputName = params[:name].split("+").join(" ")
+    @user = User.find_by(name: inputName)
+    render json: @user
   end
 
 end

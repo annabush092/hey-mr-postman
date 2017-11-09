@@ -1,7 +1,7 @@
 require 'faker'
 
 100.times do
-  User.create(name: Faker::Name.name, email: Faker::Internet.email)
+  User.create(name: Faker::Name.name, email_address: Faker::Internet.email)
 end
 
 400.times do
