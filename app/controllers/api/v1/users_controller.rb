@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    render json: @user
+    render json: @user, include: 'emails'
   end
 
   def create
@@ -20,9 +20,10 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def login
+    byebug
     inputName = params[:name].split("+").join(" ")
     @user = User.find_by(name: inputName)
-    render json: @user
+    render json: @user, include: 'emails'
   end
 
 end
