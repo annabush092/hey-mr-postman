@@ -21,7 +21,7 @@ class Api::V1::EmailsController < ApplicationController
 
   def update
     @email = Email.find_by(id: params[:id])
-    if @email.update(user_id: params[:user_id],recipient_id: params[:recipient_id],subject: params[:subject],content: params[:content],sent: params[:sent])
+    if @email.update(user_id: params[:user_id],recipient_id: params[:recipient_id],subject: params[:subject],content: params[:content],sent: params[:sent], read: params[:read])
       render json: @email
     else
       render json: {errors: @email.errors.full_messages}, status: 422
