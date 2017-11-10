@@ -20,10 +20,12 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def login
-    byebug
-    inputName = params[:name].split("+").join(" ")
-    @user = User.find_by(name: inputName)
-    render json: @user, include: 'emails'
+    if params[:name].include?('@')
+      @user = User.find_by(email_address: params[:name])
+    else
+      @user = User.find_by(name: params[:name])
+    end
+    render json: @user
   end
 
 end
