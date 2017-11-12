@@ -11,7 +11,8 @@ class Api::V1::EmailsController < ApplicationController
   end
 
   def create
-    @email = Email.new(user_id: params[:user_id],recipient_id: params[:recipient_id],subject: params[:subject],content: params[:content],sent: params[:sent])
+    recipient = User.find_or_create_by(email_address: params[:recipient_email])
+    @email = Email.new(user_id: params[:user_id], recipient_id: recipient.id, subject: params[:subject], content: params[:content], sent: params[:sent], read: params[:read])
     if @email.save
       render json: @email
     else
