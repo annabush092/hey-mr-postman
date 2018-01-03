@@ -1,25 +1,26 @@
-# README
+# Hey Mr. Postman Backend
+An interactive, 3D display of your email inbox.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+demo: https://youtu.be/BvQG8dyOTNs
 
-Things you may want to cover:
+frontend repo: https://github.com/annabush092/hey-mr-postman-frontend
 
-* Ruby version
+Created with Rails and a Postgres database, seeded with the Faker gem
 
-* System dependencies
 
-* Configuration
+To run:
 
-* Database creation
+Ensure Postgres is installed and running.
 
-* Database initialization
+bundle install
 
-* How to run the test suite
+rake db:create
 
-* Services (job queues, cache servers, search engines, etc.)
+rake db:migrate
 
-* Deployment instructions
+rake db:seed
 
-* ...
-# hey-mr-postman
+rails s (be sure to start this server before starting the frontend server)
+
+In order to view seeded Faker emails, you must obtain a username from your database.
+Go to http://localhost:3000/api/v1/users/1 and copy paste the name of the user into the sign-in page of the front-end app to view this user's email inbox.
